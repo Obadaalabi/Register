@@ -1,12 +1,21 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:resize/resize.dart';
-import 'feature/components/home.dart';
-import 'feature/controller/transProviderManager.dart';
+import 'package:toast/toast.dart';
+import 'firebase_options.dart';
+import 'src/register/presentation/components/home.dart';
+
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,23 +23,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
     return Resize(
         allowtextScaling: true,
         builder: (){
-      return ChangeNotifierProvider<CurrentProvider>(
+      return  MaterialApp(
 
-          create:(ctx)=>CurrentProvider(),
-          child: MaterialApp(
-
-            theme: ThemeData(
-              primarySwatch:Colors.grey,
-              fontFamily: 'Recoleta',
+        theme: ThemeData(
+          primarySwatch:Colors.grey,
+          fontFamily: 'Recoleta',
 
 
-            ),
-            home: MyHomePage(),
-            debugShowCheckedModeBanner: false,
-          ));
-    });
+        ),
+        home: const MyHomePage(),
+        debugShowCheckedModeBanner: false,
+      );});
   }
 }

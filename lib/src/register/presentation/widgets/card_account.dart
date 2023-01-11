@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:resize/resize.dart';
 
-import 'myText.dart';
+import 'my_text.dart';
 
 Widget cardAccount(String title, String subTitle,String urlImage,{Color? color}){
   return   Container(
@@ -26,7 +26,7 @@ Widget cardAccount(String title, String subTitle,String urlImage,{Color? color})
                   title:
                   subTitle,
                   size: 3),
-              Container(
+              SizedBox(
                 width: 9.vw,
                 height: 12.vh,
                 child: Image.asset(

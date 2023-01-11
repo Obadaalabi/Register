@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../widgets/myText.dart';
+import '../widgets/my_text.dart';
 
 Widget textButtonComp(String text,String textButton){
   return   Row(
@@ -14,7 +14,7 @@ Widget textButtonComp(String text,String textButton){
 
       TextButton(
         onPressed: () {},
-        child:myText(title:textButton, size: 3.5,color: Color(0XffEE9CDA)),),
+        child:myText(title:textButton, size: 3.5,color: const Color(0XffEE9CDA)),),
 
     ],
   );
