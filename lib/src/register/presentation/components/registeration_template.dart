@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:register/src/register/presentation/controllers/trans_provider_manager.dart';
 import 'package:resize/resize.dart';
-
-import '../controller/transProviderManager.dart';
 import '../screens/register1.dart';
 import '../screens/register2.dart';
 import '../screens/register3.dart';
 import '../screens/register4.dart';
 
 class RegistrationTemplate extends StatelessWidget {
- RegistrationTemplate({Key? key}) : super(key: key);
+ const RegistrationTemplate({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       width: double.infinity,
       height: 65.vh,
-      child:Consumer<CurrentProvider>(
-        builder: (ctx, data, child) {
-          return curentRegister(data.currentPage);
+      child:Consumer(
+        // 2. specify the builder and obtain a WidgetRef
+          builder: (_, WidgetRef ref, __) {
+
+            return curentRegister(ref.watch(currentPageProvider));
 
         })
       );
@@ -30,16 +31,16 @@ class RegistrationTemplate extends StatelessWidget {
     Widget? current;
     switch(curentPage){
       case 1:
-        current=Register1();
+        current=const Register1();
         break;
       case 2:
-        current=Register2();
+        current=const Register2();
         break;
         case 3:
-        current=Register3();
+        current=const Register3();
         break;
         case 4:
-        current=Register4();
+        current=const Register4();
         break;
 
     }
